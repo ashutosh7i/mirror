@@ -11,29 +11,84 @@
             -webkit-transform: scaleX(-1);
             transform: scaleX(-1);
         }
+
+        /* Video background */
+        #videoElement {
+            object-fit: cover; /* Ensures the video fills the background */
+            width: 100%; /* Full width */
+            height: 100vh; /* Full height of the viewport */
+            position: absolute; /* Position the video behind content */
+            top: 0;
+            left: 0;
+            z-index: -1; /* Keep the video behind other elements */
+        }
+
+        /* Prevent scrolling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Disable scrolling */
+            height: 100%;
+        }
+
+        /* Navbar (Top) */
+        .navbar-top {
+            position: fixed; /* Fixed position to make it float */
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* Center the navbar */
+            z-index: 10; /* Ensure it floats above the video */
+            padding: 1rem 2rem; /* Add padding for pill shape */
+            background-color: rgba(31, 41, 55, 0.8); /* Slightly transparent background */
+            border-radius: 9999px; /* Make the navbar pill-shaped */
+            width: auto; /* Auto width for pill shape */
+        }
+
+        /* Bottom bar */
+        .navbar-bottom {
+            position: fixed; /* Fixed position to make it float */
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%); /* Center the bottom bar */
+            z-index: 10; /* Ensure it floats above the video */
+            padding: 1rem 2rem; /* Add padding for pill shape */
+            background-color: rgba(31, 41, 55, 0.8); /* Slightly transparent background */
+            border-radius: 9999px; /* Make the bottom bar pill-shaped */
+            width: auto; /* Auto width for pill shape */
+        }
+
+        /* Content section */
+        .content {
+            padding-top: 70px; /* Adjust so content does not overlap with the top navbar */
+            padding-bottom: 70px; /* Adjust so content does not overlap with the bottom navbar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <!-- Navbar -->
-    <nav class="bg-gray-800 text-white p-4 rounded-full mx-auto mt-4 w-1/4">
+    <!-- Navbar (Top) -->
+    <nav class="navbar-top bg-gray-800 text-white p-4 rounded-full mx-auto mt-4 w-1/4">
         <ul class="flex justify-around">
             <li><a href="#" class="hover:text-gray-400">Mirror 🪞</a></li>
         </ul>
     </nav>
 
     <!-- Center Content -->     
-    <div class="flex-grow flex flex-col justify-center items-center relative z-0">
+    <div class="content">
         <video autoplay id="videoElement" class="w-full h-full absolute top-0 left-0 z-0"></video>
     </div>
 
-    <!-- Bottom bar -->
-    <nav class="bg-gray-800 text-white p-4 rounded-full mx-auto mb-4 w-2/4">
-        <ul class="flex justify-around">
+    <!-- Bottom Bar -->
+    <nav class="navbar-bottom bg-gray-800 text-white p-4 rounded-full mx-auto mb-4 w-2/4">
+        <ul class="flex justify-between space-x-8"> <!-- Add space between items -->
             <li><a class="hover:text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
-                  </svg>                  
+                </svg>                  
               </a>
             </li>
             <li><a onclick="savePhoto()" id="clickPhoto" class="hover:text-gray-400">
@@ -43,7 +98,7 @@
             <li><a onclick="flipVideo()" class="hover:text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
-                  </svg>
+                </svg>
               </a>
             </li>
         </ul>
